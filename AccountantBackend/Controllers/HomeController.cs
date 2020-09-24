@@ -10,7 +10,7 @@ namespace AccountantBackend.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Accountant";
 
             return View();
         }

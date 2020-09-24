@@ -7,12 +7,12 @@ using System.Web.Http;
 
 namespace AccountantBackend.Controllers
 {
-    public class ValuesController : ApiController
+    public class ClientsController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        // GET api/clients
+        public IEnumerable<Client> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new Client[] { new Client() };
         }
 
         // GET api/values/5
