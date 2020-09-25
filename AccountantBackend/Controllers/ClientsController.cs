@@ -20,12 +20,12 @@ namespace AccountantBackend.Controllers
         // GET: api/Clients
         public IQueryable<Client> GetClients()
         {
-            return db.Clients;
+            return db.Clients.Include(client => client.Vat).Include(client => client.Vat.Expenses);
         }
 
         // GET: api/Clients/5
         [ResponseType(typeof(Client))]
-        public IHttpActionResult GetClient(string id)
+        public IHttpActionResult GetClient(int id)
         {
             Client client = db.Clients.Find(id);
             if (client == null)
@@ -38,14 +38,14 @@ namespace AccountantBackend.Controllers
 
         // PUT: api/Clients/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutClient(string id, Client client)
+        public IHttpActionResult PutClient(int id, Client client)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != client.Name)
+            if (id != client.ClientId)
             {
                 return BadRequest();
             }
@@ -90,7 +90,7 @@ namespace AccountantBackend.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ClientExists(client.Name))
+                if (ClientExists(client.ClientId))
                 {
                     return Conflict();
                 }
@@ -100,12 +100,12 @@ namespace AccountantBackend.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = client.Name }, client);
+            return CreatedAtRoute("DefaultApi", new { id = client.ClientId }, client);
         }
 
         // DELETE: api/Clients/5
         [ResponseType(typeof(Client))]
-        public IHttpActionResult DeleteClient(string id)
+        public IHttpActionResult DeleteClient(int id)
         {
             Client client = db.Clients.Find(id);
             if (client == null)
@@ -128,9 +128,9 @@ namespace AccountantBackend.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ClientExists(string id)
+        private bool ClientExists(int id)
         {
-            return db.Clients.Count(e => e.Name == id) > 0;
+            return db.Clients.Count(e => e.ClientId == id) > 0;
         }
     }
 }
