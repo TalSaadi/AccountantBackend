@@ -81,6 +81,7 @@ namespace AccountantBackend.Controllers
                 return BadRequest(ModelState);
             }
 
+            client.LastUpdate = DateTime.Now;
             db.Clients.Add(client);
 
             try
