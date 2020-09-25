@@ -50,6 +50,7 @@ namespace AccountantBackend.Controllers
                 return BadRequest();
             }
 
+            client.LastUpdate = DateTime.Now;
             db.Entry(client).State = EntityState.Modified;
 
             try
