@@ -17,11 +17,8 @@
                         CompanyName = c.String(),
                         Address = c.String(),
                         LastUpdate = c.DateTime(nullable: false),
-                        VatId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ClientId)
-                .ForeignKey("dbo.Vats", t => t.VatId, cascadeDelete: true)
-                .Index(t => t.VatId);
+                .PrimaryKey(t => t.ClientId);
             
             CreateTable(
                 "dbo.Vats",
@@ -29,8 +26,11 @@
                     {
                         VatId = c.Int(nullable: false, identity: true),
                         Month = c.Int(nullable: false),
+                        Client_ClientId = c.Int(),
                     })
-                .PrimaryKey(t => t.VatId);
+                .PrimaryKey(t => t.VatId)
+                .ForeignKey("dbo.Clients", t => t.Client_ClientId)
+                .Index(t => t.Client_ClientId);
             
             CreateTable(
                 "dbo.Expenses",
@@ -43,20 +43,20 @@
                         VatAmount = c.Double(nullable: false),
                         AfterVat = c.Double(nullable: false),
                         Date = c.DateTime(nullable: false),
-                        VatId = c.Int(nullable: false),
+                        Vat_VatId = c.Int(),
                     })
                 .PrimaryKey(t => t.ExpenseId)
-                .ForeignKey("dbo.Vats", t => t.VatId, cascadeDelete: true)
-                .Index(t => t.VatId);
+                .ForeignKey("dbo.Vats", t => t.Vat_VatId)
+                .Index(t => t.Vat_VatId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Clients", "VatId", "dbo.Vats");
-            DropForeignKey("dbo.Expenses", "VatId", "dbo.Vats");
-            DropIndex("dbo.Expenses", new[] { "VatId" });
-            DropIndex("dbo.Clients", new[] { "VatId" });
+            DropForeignKey("dbo.Vats", "Client_ClientId", "dbo.Clients");
+            DropForeignKey("dbo.Expenses", "Vat_VatId", "dbo.Vats");
+            DropIndex("dbo.Expenses", new[] { "Vat_VatId" });
+            DropIndex("dbo.Vats", new[] { "Client_ClientId" });
             DropTable("dbo.Expenses");
             DropTable("dbo.Vats");
             DropTable("dbo.Clients");

@@ -17,8 +17,6 @@ namespace AccountantBackend.Models
         public string Address { get; set; }
         public DateTime LastUpdate { get; set; }
 
-        public int VatId { get; set; }
-        [ForeignKey("VatId")]
-        public virtual Vat Vat { get; set; }
+        public ICollection<Vat> Vats { get; set; }
     }
 }

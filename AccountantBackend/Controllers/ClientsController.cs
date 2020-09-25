@@ -20,14 +20,18 @@ namespace AccountantBackend.Controllers
         // GET: api/Clients
         public IQueryable<Client> GetClients()
         {
-            return db.Clients.Include(client => client.Vat).Include(client => client.Vat.Expenses);
+            return db.Clients.Include(
+                client => client.Vats.Select(
+                    vat => vat.Expenses));
         }
 
         // GET: api/Clients/5
         [ResponseType(typeof(Client))]
         public IHttpActionResult GetClient(int id)
         {
-            Client client = db.Clients.Find(id);
+            Client client = db.Clients.Include(
+                c => c.Vats.Select(
+                    vat => vat.Expenses)).SingleOrDefault();
             if (client == null)
             {
                 return NotFound();

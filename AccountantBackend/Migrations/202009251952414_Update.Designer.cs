@@ -13,7 +13,7 @@ namespace AccountantBackend.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202009251708377_Update"; }
+            get { return "202009251952414_Update"; }
         }
         
         string IMigrationMetadata.Source

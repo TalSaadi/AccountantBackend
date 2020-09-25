@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -24,21 +25,24 @@
                     CompanyName = "Tal",
                     Address = "Hazon Ish 131",
                     LastUpdate = DateTime.Now,
-                    Vat = new Vat()
+                    Vats = new Collection<Vat>()
                     {
-                        VatId = 1,
-                        Month = MonthEnum.JanFeb,
-                        Expenses = new System.Collections.ObjectModel.Collection<Expense>()
+                        new Vat()
                         {
-                            new Expense()
+                            VatId = 1,
+                            Month = MonthEnum.JanFeb,
+                            Expenses = new Collection<Expense>()
                             {
-                                ExpenseTitle = "Game",
-                                Category = ExpenseCategory.House,
-                                Amounts = new double[] { 30, 30, 40},
-                                Total = 100,
-                                VatAmount = 17,
-                                AfterVat = 83,
-                                Date = DateTime.Now
+                                new Expense()
+                                {
+                                    ExpenseTitle = "Game",
+                                    Category = ExpenseCategory.House,
+                                    Amounts = new Collection<double>() { 30, 30, 40},
+                                    Total = 100,
+                                    VatAmount = 17,
+                                    AfterVat = 83,
+                                    Date = DateTime.Now
+                                }
                             }
                         }
                     }
