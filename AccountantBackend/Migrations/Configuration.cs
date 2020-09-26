@@ -31,6 +31,9 @@
                         {
                             VatId = 1,
                             Month = MonthEnum.JanFeb,
+                            TotalExpenses = 100,
+                            TotalVat = 17,
+                            AfterVat = 83,
                             Expenses = new Collection<Expense>()
                             {
                                 new Expense()
