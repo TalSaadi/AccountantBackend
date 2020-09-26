@@ -31,7 +31,7 @@ namespace AccountantBackend.Controllers
         {
             Client client = db.Clients.Include(
                 c => c.Vats.Select(
-                    vat => vat.Expenses)).SingleOrDefault();
+                    vat => vat.Expenses)).SingleOrDefault(cl => cl.ClientId == id);
             if (client == null)
             {
                 return NotFound();
