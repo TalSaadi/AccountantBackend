@@ -26,6 +26,7 @@ namespace AccountantBackend.Models
         public double TotalVat { get; set; }
         public double AfterVat { get; set; }
 
+        public Profit Profit { get; set; }
         public ICollection<Expense> Expenses { get; set; }
     }
 }

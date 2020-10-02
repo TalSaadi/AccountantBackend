@@ -12,44 +12,44 @@ using AccountantBackend.Models;
 
 namespace AccountantBackend.Controllers
 {
-    public class ExpensesController : ApiController
+    public class ProfitsController : ApiController
     {
         private ClientContext db = new ClientContext();
 
-        // GET: api/Expenses
-        public IQueryable<Expense> GetExpenses()
+        // GET: api/Profits
+        public IQueryable<Profit> GetProfits()
         {
-            return db.Expenses;
+            return db.Profits;
         }
-             
-        // GET: api/Expenses/5
-        [ResponseType(typeof(Expense))]
-        public IHttpActionResult GetExpense(int id)
+
+        // GET: api/Profits/5
+        [ResponseType(typeof(Profit))]
+        public IHttpActionResult GetProfit(int id)
         {
-            Expense expense = db.Expenses.Find(id);
-            if (expense == null)
+            Profit profit = db.Profits.Find(id);
+            if (profit == null)
             {
                 return NotFound();
             }
 
-            return Ok(expense);
+            return Ok(profit);
         }
 
-        // PUT: api/Expenses/5
+        // PUT: api/Profits/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutExpense(int id, Expense expense)
+        public IHttpActionResult PutProfit(int id, Profit profit)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != expense.ExpenseId)
+            if (id != profit.ProfitId)
             {
                 return BadRequest();
             }
 
-            db.Entry(expense).State = EntityState.Modified;
+            db.Entry(profit).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace AccountantBackend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ExpenseExists(id))
+                if (!ProfitExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace AccountantBackend.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Expenses
-        [ResponseType(typeof(Expense))]
-        public IHttpActionResult PostExpense(Expense expense)
+        // POST: api/Profits
+        [ResponseType(typeof(Profit))]
+        public IHttpActionResult PostProfit(Profit profit)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Expenses.Add(expense);
+            db.Profits.Add(profit);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = expense.ExpenseId }, expense);
+            return CreatedAtRoute("DefaultApi", new { id = profit.ProfitId }, profit);
         }
 
-        // DELETE: api/Expenses/5
-        [ResponseType(typeof(Expense))]
-        public IHttpActionResult DeleteExpense(int id)
+        // DELETE: api/Profits/5
+        [ResponseType(typeof(Profit))]
+        public IHttpActionResult DeleteProfit(int id)
         {
-            Expense expense = db.Expenses.Find(id);
-            if (expense == null)
+            Profit profit = db.Profits.Find(id);
+            if (profit == null)
             {
                 return NotFound();
             }
 
-            db.Expenses.Remove(expense);
+            db.Profits.Remove(profit);
             db.SaveChanges();
 
-            return Ok(expense);
+            return Ok(profit);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace AccountantBackend.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ExpenseExists(int id)
+        private bool ProfitExists(int id)
         {
-            return db.Expenses.Count(e => e.ExpenseId == id) > 0;
+            return db.Profits.Count(e => e.ProfitId == id) > 0;
         }
     }
 }

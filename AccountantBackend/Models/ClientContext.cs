@@ -15,5 +15,7 @@ namespace AccountantBackend.Models
         public System.Data.Entity.DbSet<AccountantBackend.Models.Client> Clients { get; set; }
         public System.Data.Entity.DbSet<AccountantBackend.Models.Vat> Vats { get; set; }
         public System.Data.Entity.DbSet<AccountantBackend.Models.Expense> Expenses { get; set; }
+
+        public System.Data.Entity.DbSet<AccountantBackend.Models.Profit> Profits { get; set; }
     }
 }

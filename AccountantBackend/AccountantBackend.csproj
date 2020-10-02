@@ -283,18 +283,20 @@
     <Compile Include="Controllers\ExpensesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\ProfitsController.cs" />
     <Compile Include="Controllers\VatsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202009252057068_Update2.cs" />
-    <Compile Include="Migrations\202009252057068_Update2.designer.cs">
-      <DependentUpon>202009252057068_Update2.cs</DependentUpon>
+    <Compile Include="Migrations\202010022249223_Update.cs" />
+    <Compile Include="Migrations\202010022249223_Update.designer.cs">
+      <DependentUpon>202010022249223_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\ClientContext.cs" />
     <Compile Include="Models\Expense.cs" />
+    <Compile Include="Models\Profit.cs" />
     <Compile Include="Models\Vat.cs" />
     <Compile Include="Models\VatContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -372,8 +374,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009252057068_Update2.resx">
-      <DependentUpon>202009252057068_Update2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010022249223_Update.resx">
+      <DependentUpon>202010022249223_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

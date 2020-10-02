@@ -21,9 +21,12 @@
                 new Client()
                 {
                     Name = "Tal",
-                    Age = 19,
-                    CompanyName = "Tal",
-                    Address = "Hazon Ish 131",
+                    IdCard = "212214829",
+                    BirthYear = 2001,
+                    Username = "talsaadi36",
+                    Password = "asdfjiasdf",
+                    GreenUsername = "talsaadi",
+                    GreenPassword = "cvnvxzcnvi",
                     LastUpdate = DateTime.Now,
                     Vats = new Collection<Vat>()
                     {
@@ -34,6 +37,14 @@
                             TotalExpenses = 100,
                             TotalVat = 17,
                             AfterVat = 83,
+                            Profit = new Profit()
+                            {
+                                ProfitTitle = "Consult",
+                                Amounts = new Collection<double>() {30, 30, 40},
+                                Total = 100,
+                                DealsVat = 17,
+                                AfterVat = 83
+                            },
                             Expenses = new Collection<Expense>()
                             {
                                 new Expense()
