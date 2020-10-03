@@ -32,13 +32,10 @@
                         TotalExpenses = c.Double(nullable: false),
                         TotalVat = c.Double(nullable: false),
                         AfterVat = c.Double(nullable: false),
-                        Profit_ProfitId = c.Int(),
                         Client_ClientId = c.Int(),
                     })
                 .PrimaryKey(t => t.VatId)
-                .ForeignKey("dbo.Profits", t => t.Profit_ProfitId)
                 .ForeignKey("dbo.Clients", t => t.Client_ClientId)
-                .Index(t => t.Profit_ProfitId)
                 .Index(t => t.Client_ClientId);
             
             CreateTable(
@@ -62,24 +59,26 @@
                 "dbo.Profits",
                 c => new
                     {
-                        ProfitId = c.Int(nullable: false, identity: true),
+                        ProfitId = c.Int(nullable: false),
                         ProfitTitle = c.String(),
                         Total = c.Double(nullable: false),
                         DealsVat = c.Double(nullable: false),
                         AfterVat = c.Double(nullable: false),
                     })
-                .PrimaryKey(t => t.ProfitId);
+                .PrimaryKey(t => t.ProfitId)
+                .ForeignKey("dbo.Vats", t => t.ProfitId)
+                .Index(t => t.ProfitId);
             
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.Vats", "Client_ClientId", "dbo.Clients");
-            DropForeignKey("dbo.Vats", "Profit_ProfitId", "dbo.Profits");
+            DropForeignKey("dbo.Profits", "ProfitId", "dbo.Vats");
             DropForeignKey("dbo.Expenses", "Vat_VatId", "dbo.Vats");
+            DropIndex("dbo.Profits", new[] { "ProfitId" });
             DropIndex("dbo.Expenses", new[] { "Vat_VatId" });
             DropIndex("dbo.Vats", new[] { "Client_ClientId" });
-            DropIndex("dbo.Vats", new[] { "Profit_ProfitId" });
             DropTable("dbo.Profits");
             DropTable("dbo.Expenses");
             DropTable("dbo.Vats");

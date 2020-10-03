@@ -22,7 +22,7 @@ namespace AccountantBackend.Controllers
         {
             return db.Clients.Include(
                 client => client.Vats.Select(
-                    vat => vat.Expenses)));
+                    vat => vat.Expenses));
         }
 
         // GET: api/Clients/5
