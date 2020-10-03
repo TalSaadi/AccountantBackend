@@ -29,6 +29,7 @@
                     {
                         VatId = c.Int(nullable: false, identity: true),
                         Month = c.Int(nullable: false),
+                        Year = c.Int(nullable: false),
                         TotalExpenses = c.Double(nullable: false),
                         TotalVat = c.Double(nullable: false),
                         AfterVat = c.Double(nullable: false),

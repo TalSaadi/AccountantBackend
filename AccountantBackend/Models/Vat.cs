@@ -22,6 +22,7 @@ namespace AccountantBackend.Models
         [Key]
         public int VatId { get; set; }
         public MonthEnum Month { get; set; }
+        public int Year { get; set; }
         public double TotalExpenses { get; set; }
         public double TotalVat { get; set; }
         public double AfterVat { get; set; }

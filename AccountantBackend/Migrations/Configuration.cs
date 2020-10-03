@@ -33,6 +33,7 @@
                         new Vat()
                         {
                             VatId = 1,
+                            Year = 2020,
                             Month = MonthEnum.JanFeb,
                             TotalExpenses = 100,
                             TotalVat = 17,
